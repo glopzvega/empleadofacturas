@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-4 offset-8">
+			<div class="card">
+				<div class="card-body">
+					<div class="card-title">
+						<h5>Registro</h5>
+						<hr>
+					</div>
+					<div class="card-text">
+						<form id="signinForm" method="post">
+							{% csrf_token %}
+							{% for field in form %}
+								<p>
+									{{ field.label_tag }}<br>
+									{{ field }}									
+									{% for error in field.errors %}
+										<p style="color: red">{{ error }}</p>
+									{% endfor %}
+								</p>
+							{% endfor %}							
+							<br>
+							<div class="row">
+								<div class="col text-center">
+									<button type="submit" class="btn btn-primary">Registrarse</button>
+									<br>
+								<a href="{% url 'login' %}" class="btn btn-link">ya tengo una cuenta</a>
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col text-center">
+									<a class="social social-google" style="text-decoration:none;" href="{% url 'social:begin' 'google-oauth2' %}">
+										<i class="fab fa-google"></i>
+										Login con Google</a>
+									<br>
+									<a class="social social-facebook" style="text-decoration:none;"  href="{% url 'social:begin' 'facebook' %}">
+										<i class="fab fa-facebook"></i>
+										Login con Facebook</a>
+									<br>
+								</div>
+							</div>
+						</form>
+			
+						<br>
+						{% if form.errors %}
+						<p>Your username and password didn't match. Please try again.</p>
+						{% endif %}
+			
+						{% if next %}
+								{% if user.is_authenticated %}
+								<p>Your account doesn't have access to this page. To proceed,
+								please login with an account that has access.</p>
+								{% else %}
+								<p>Please login to see this page.</p>
+								{% endif %}
+						{% endif %}
+					</div>
+				</div>
+			</div>		
+		</div>
+	</div>
+</div>
+<br>
+<br>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

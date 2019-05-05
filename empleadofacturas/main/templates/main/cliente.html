@@ -1,0 +1,50 @@
+{% extends 'main/__base.html' %}
+
+{% load static %}
+    
+{% block styles %}
+<!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
+{% endblock %}
+
+{% block content %}  
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card">
+
+        <div class="card-body">
+          <div class="card-title">
+            <h5>Nuevo Cliente</h5>
+          </div>
+          <div class="card-text">
+            <form action="" method="post">
+            {% csrf_token %}         
+            {% for field in form %}
+              <div class="row">
+                 <div class="col">
+                  {{ field.label }}
+                  {{ field}}
+                 </div>
+              </div>
+              <br>
+            {% endfor %}
+              <div class="row">
+                <div class="col text-center">
+                  <button type="submit" class="btn btn-primary">GUARDAR</button>
+                </div>
+              </div>
+            </form>   
+          </div>
+        </div>
+      </div>      
+           
+    </div>
+  </div>
+
+</div>
+{% endblock %} 
+    
+{% block scripts %}
+<script src="{% static 'js/index.js' %}"></script>    
+{% endblock %}

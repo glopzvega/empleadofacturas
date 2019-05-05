@@ -1,0 +1,38 @@
+{% extends 'main/__base.html' %}
+
+{% load static %}
+    
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}  
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-12">      
+      <table class="table">
+        <thead>
+          <th>Nombre</th>
+          <th>RFC</th>          
+        </thead>
+        <tbody>
+          {% for c in clientes%}
+          <tr>
+            <td>
+              <a href="{% url 'cliente_editar' c.id %}">{{c.nombre}}</a>
+            </td>
+            <td>{{c.rfc}}</td>            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+    </div>  
+  </div>
+
+</div>
+{% endblock %} 
+    
+{% block scripts %}
+<script src="{% static 'js/index.js' %}"></script>    
+{% endblock %}

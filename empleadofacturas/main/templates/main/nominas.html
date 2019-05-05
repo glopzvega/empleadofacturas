@@ -1,0 +1,42 @@
+{% extends 'main/__base.html' %}
+
+{% load static %}
+    
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}  
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-12">      
+      <table class="table">
+        <thead>
+          <th>Empleado</th>
+          <th>Tipo</th>          
+          <th>Horas Trabajadas</th>          
+          <th>Dias Trabajados</th>          
+          <th>Total</th>          
+        </thead>
+        <tbody>
+          {% for f in nominas%}
+          <tr>            
+            <td>{{f.empleado.nombre}}</td>
+            <td>{{f.empleado.tipo}}</td>
+            <td>{{f.horas_trabajadas}}</td>
+            <td>{{f.dias_trabajados}}</td>
+            <td>${{f.monto_pago}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+    </div>  
+  </div>
+
+</div>
+{% endblock %} 
+    
+{% block scripts %}
+<script src="{% static 'js/index.js' %}"></script>    
+{% endblock %}

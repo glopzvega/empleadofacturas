@@ -1,0 +1,42 @@
+{% extends 'main/__base.html' %}
+
+{% load static %}
+    
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}  
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-12">      
+      <table class="table">
+        <thead>
+          <th>Folio</th>
+          <th>Cliente</th>          
+          <th>Fecha</th>          
+          <th>Total</th>          
+        </thead>
+        <tbody>
+          {% for f in facturas%}
+          <tr>
+            <td>
+              <a href="{% url 'factura_editar' f.id %}">{{f.folio}}</a>
+            </td>
+            <td>{{f.cliente.nombre}}</td>
+            <td>{{f.fecha}}</td>
+            <td>${{f.total}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+    </div>  
+  </div>
+
+</div>
+{% endblock %} 
+    
+{% block scripts %}
+<script src="{% static 'js/index.js' %}"></script>    
+{% endblock %}

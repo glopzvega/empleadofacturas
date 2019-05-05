@@ -1,0 +1,84 @@
+{% extends 'main/__base.html' %}
+
+{% load static %}
+    
+{% block styles %}
+<!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
+{% endblock %}
+
+{% block content %}  
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-10 offset-1">
+      <div class="card">
+
+        <div class="card-body">
+          <div class="card-title">
+            <h5>Nueva Nómina</h5>
+            <hr>
+          </div>
+          <div class="card-text">
+            <form id="nomina" action="" method="post">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-6">
+                  <label for="id_cliente">Empleado</label>
+                  <select name="empleado" id="id_empleado">
+                    <option value="">Selecciona un empleado</option>
+                    {% for e in empleados %}
+                    <option value="{{e.id}}">{{e.nombre}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-3">
+                    <label for="id_fecha">Tipo:</label>
+                    <input type="text" name="tipo" id="id_tipo" readonly>
+                </div>
+                <div class="col-3">
+                    <label for="id_monto_pago">Monto de Pago</label>
+                    <input type="text" name="monto_pago" id="id_monto_pago" readonly>
+                </div>
+              </div>              
+              <br>
+              <div class="row">                  
+                <div class="col-3">
+                    <label for="id_horas_trabajadas">Horas Trabajadas</label>
+                    <input type="number" min="0" value="0" name="horas_trabajadas" id="id_horas_trabajadas" readonly>
+                </div>
+                <div class="col-3">
+                    <label for="id_dias_trabajadas">Dias Trabajados</label>
+                    <input type="number" min="0" value="0" max="31" name="dias_trabajados" id="id_dias_trabajados" readonly>
+                </div>
+                <div id="totales" class="col-6 text-right">
+                        <div class="row">
+                          <div class="col">
+                            <label for="">Total: </label>
+                            <br>
+                            <strong class="total">$0.00</strong>
+                          </div>
+                        </div>
+                      </div>
+              </div>
+             
+              <br>
+              <div class="row">
+                <div class="col text-center">
+                  <button id="guardar_nomina" class="btn btn-primary disabled" disabled>GUARDAR</button>
+                </div>
+              </div>
+            </form>   
+          </div>
+        </div>
+      </div>      
+           
+    </div>
+  </div>
+
+</div>
+{% endblock %} 
+    
+{% block scripts %}
+
+<script src="{% static 'js/nomina.js' %}"></script>    
+{% endblock %}

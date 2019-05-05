@@ -1,0 +1,44 @@
+{% extends 'main/__base.html' %}
+
+{% load static %}
+    
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}  
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-12">      
+      <table class="table">
+        <thead>
+          <th>Nombre</th>
+          <th>NSS</th>
+          <th>Tipo</th>
+          <th>Pago Hora</th>
+          <th>Pago Mes</th>
+        </thead>
+        <tbody>
+          {% for e in empleados%}
+          <tr>
+            <td>
+              <a href="{% url 'empleado_editar' e.id %}">{{e.nombre}}</a>
+            </td>
+            <td>{{e.nss}}</td>
+            <td>{{e.tipo}}</td>
+            <td>{{e.pago_hora}}</td>
+            <td>{{e.pago_mes}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+    </div>  
+  </div>
+
+</div>
+{% endblock %} 
+    
+{% block scripts %}
+<script src="{% static 'js/index.js' %}"></script>    
+{% endblock %}

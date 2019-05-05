@@ -1,0 +1,40 @@
+{% extends 'main/__base.html' %}
+
+{% load static %}
+    
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}  
+<div class="container-fluid">
+  <br>
+  <div class="row">
+    <div class="col-12">      
+      <table class="table">
+        <thead>
+          <th>Nombre</th>
+          <th>Clave</th>
+          <th>Precio</th>          
+        </thead>
+        <tbody>
+          {% for p in productos%}
+          <tr>
+            <td>
+              <a href="{% url 'producto_editar' p.id %}">{{p.nombre}}</a>
+            </td>
+            <td>{{p.clave}}</td>
+            <td>{{p.precio}}</td>            
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>      
+    </div>  
+  </div>
+
+</div>
+{% endblock %} 
+    
+{% block scripts %}
+<script src="{% static 'js/index.js' %}"></script>    
+{% endblock %}
